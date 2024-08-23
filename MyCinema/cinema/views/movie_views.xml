@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="movie_action" model="ir.actions.act_window">
+        <field name="name">Rạp chiếu phim</field>
+        <field name="res_model">movie</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="show_time_action" model="ir.actions.act_window">
+        <field name="name">Xuất chiếu</field>
+        <field name="res_model">show.time</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--List cac estate property voi cac thuoc tinh hien thi them o giao dien-->
+    <record id="estate_property_view_tree" model="ir.ui.view">
+        <field name="name">estate.tree</field>
+        <field name="model">movie</field>
+        <field name="arch" type="xml">
+            <tree string="Tests">
+                <field name="name"/>
+                <field name="content"/>
+                <field name="length"/>
+                <field name="show_time_ids"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
