@@ -10,3 +10,5 @@ class Movie(models.Model):
     length= fields.Integer(string= 'Thời lượng (phút)')
 
     show_time_ids = fields.One2many('show.time', 'movie_id', string = 'Số xuất chiếu')
+    category_ids = fields.Many2many('movie.category', string='Thể loại')
+    actor_ids = fields.Many2many('movie.actor', string='Diễn viên chính')

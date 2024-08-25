@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="movie_action" model="ir.actions.act_window">
-        <field name="name">Rạp chiếu phim</field>
+        <field name="name">Danh sách các bộ phim</field>
         <field name="res_model">movie</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -12,17 +12,80 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!--List cac estate property voi cac thuoc tinh hien thi them o giao dien-->
+    <record id="movie_category_action" model="ir.actions.act_window">
+        <field name="name">Thể loại</field>
+        <field name="res_model">movie.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="movie_actor_action" model="ir.actions.act_window">
+        <field name="name">Diễn viên</field>
+        <field name="res_model">movie.actor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--List cac movie voi cac thuoc tinh hien thi them o giao dien-->
     <record id="estate_property_view_tree" model="ir.ui.view">
         <field name="name">estate.tree</field>
         <field name="model">movie</field>
         <field name="arch" type="xml">
             <tree string="Tests">
                 <field name="name"/>
-                <field name="content"/>
+                <field name="category_ids" widget="many2many_tags"/>
                 <field name="length"/>
                 <field name="show_time_ids"/>
             </tree>
+        </field>
+    </record>
+
+        <!--List cac show time voi cac thuoc tinh hien thi them o giao dien-->
+    <record id="show_time_view_tree" model="ir.ui.view">
+        <field name="name">movie.tree</field>
+        <field name="model">show.time</field>
+        <field name="arch" type="xml">
+            <tree string="Tests">
+                <field name="name"/>
+                <field name="begin_time"/>
+                <field name="movie_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Form edit va create 1 estate property-->
+    <record id="movie_view_form" model="ir.ui.view">
+        <field name="name">movie.form</field>
+        <field name="model">movie</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <sheet>
+                    <h1 class="mb32">
+                        <field name="name" class="mb16"/>
+                    </h1>
+                    <field name="category_ids" widget="many2many_tags"/>
+                    <group>
+                        <group>
+                            <field name="actor_ids"/>
+                            <field name="content"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Thông tin xuất chiếu">
+                            <group>
+                                <field name="length"/>
+                                <field name="show_time_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="begin_time"/>
+                                        <field name="seat_counts"/>
+                                        <field name="adult_ticket_price"/>
+                                        <field name="children_ticket_price"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
         </field>
     </record>
 
