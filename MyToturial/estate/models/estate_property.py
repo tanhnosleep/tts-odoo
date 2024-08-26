@@ -1,7 +1,9 @@
+from contextlib import nullcontext
 from datetime import timedelta
 from email.policy import default
 
-from odoo import fields, models
+from odoo import fields, models, api
+from odoo.tools.populate import compute
 
 
 class RecurringPlan(models.Model):
@@ -34,3 +36,29 @@ class RecurringPlan(models.Model):
     salesperson_id = fields.Many2one('res.users', string='Salesperson', default=lambda self: self.env.user)
     tag_ids = fields.Many2many('estate.property.tag')
     offer_ids = fields.One2many('estate.property.offer', 'property_id', string = 'Offer ID', required = True)
+
+    total_area = fields.Integer(compute='_compute_total_area', string='Total Area')
+
+    @api.depends("living_area", "garden_area")
+    def _compute_total_area(self):
+        for record in self:
+            record.total_area = record.living_area + record.garden_area
+
+    best_price = fields.Float(compute='_compute_best_price')
+
+    @api.depends("offer_ids.price")
+    def _compute_best_price(self):
+        for record in self:
+            prices = record.mapped('offer_ids.price')
+            record.best_price = max(prices, default=0.0)
+
+    @api.onchange("garden")
+    def _onchange_garden(self):
+        if(self.garden == True):
+            self.garden_area = 10
+            self.garden_orientation = 'North'
+        else:
+            self.garden_area = None
+            self.garden_orientation = None
+
+
