@@ -3,6 +3,7 @@ from datetime import timedelta
 from email.policy import default
 
 from odoo import fields, models, api
+from odoo.exceptions import UserError
 from odoo.tools.populate import compute
 
 
@@ -28,7 +29,7 @@ class RecurringPlan(models.Model):
         help="Type is used to separate Leads and Opportunities")
     active = fields.Boolean(default=True)
     state = fields.Selection(
-        string='State Selection',
+        string='Status',
         selection=[('New', 'New'), ('Offer Received', 'Offer Received'), ('Offer Received', 'Offer Received'), ('Sold', 'Sold'), ('Canceled', 'Canceled')],
         help="Type is used to separate Leads and Opportunities", required=True, copy=False, default='New')
     property_type_id = fields.Many2one('estate.property.type', string = 'Property Type')
@@ -54,11 +55,25 @@ class RecurringPlan(models.Model):
 
     @api.onchange("garden")
     def _onchange_garden(self):
-        if(self.garden == True):
+        if self.garden == True:
             self.garden_area = 10
             self.garden_orientation = 'North'
         else:
             self.garden_area = None
             self.garden_orientation = None
 
+    def action_sold(self):
+        for record in self:
+            if record.state == "Canceled":
+                raise UserError('Canceled properties cannot be sold')
+            else:
+                record.state = "Sold"
+        return True
 
+    def action_cancel(self):
+        for record in self:
+            if record.state == "Sold":
+                raise UserError('Canceled properties cannot be canceled')
+            else:
+                record.state = "Canceled"
+        return True
