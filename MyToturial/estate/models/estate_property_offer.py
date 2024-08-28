@@ -35,10 +35,12 @@ class PropertyOffer(models.Model):
                 record.validity = 7
 
     def action_accepted(self):
+
         for record in self:
             record.status = 'Accepted'
-            record.property_id.buyer_id = record.partner_id
-            record.property_id.selling_price = record.property_id.best_price
+        highest_priced_record = max(self, key=lambda r: r.price)
+        record.property_id.selling_price = highest_priced_record.price
+        record.property_id.buyer_id = highest_priced_record.partner_id
         return True
 
     def action_refused(self):

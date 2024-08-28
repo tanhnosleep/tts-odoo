@@ -3,7 +3,7 @@ from datetime import timedelta
 from email.policy import default
 
 from odoo import fields, models, api
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tools.populate import compute
 
 
@@ -15,6 +15,10 @@ class RecurringPlan(models.Model):
     description = fields.Text()
     postcode = fields.Char()
     date_availability = fields.Date(copy=False, default= lambda self: fields.Date.today() + timedelta(days=3*30), string = 'Available From')
+    _sql_constraints = [
+        ('check_expected_price', 'CHECK(expected_price > 0)',
+         'The expected price must be strictly positive.')
+    ]
     expected_price = fields.Float(required=True)
     selling_price = fields.Float(readonly=True, copy=False)
     bedrooms = fields.Integer(default=2)
@@ -77,3 +81,9 @@ class RecurringPlan(models.Model):
             else:
                 record.state = "Canceled"
         return True
+
+    @api.constrains('selling_price')
+    def _check_selling_price(self):
+        for record in self:
+            if 0< record.selling_price < record.expected_price *0.9:
+                raise ValidationError("The selling price cannot be lower than 90% of the expected price.")
