@@ -6,3 +6,4 @@ class MovieActor(models.Model):
     _description = "This is table for movie actor"
 
     name = fields.Text(required = True)
+    movie_ids = fields.Many2many('movie', string='Phim')

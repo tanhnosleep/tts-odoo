@@ -6,3 +6,4 @@ class MovieCategory(models.Model):
     _description = "This is table for movie category"
 
     name = fields.Text(required = True)
+    movie_ids = fields.Many2many('movie', string='Phim')

@@ -3,3 +3,5 @@
 "access_show_time","ir_model_access","model_show_time","base.group_user",1,1,1,1
 "access_movie_category","ir_model_access","model_movie_category","base.group_user",1,1,1,1
 "access_movie_actor","ir_model_access","model_movie_actor","base.group_user",1,1,1,1
+"access_service","ir_model_access","model_foods","base.group_user",1,1,1,1
+"access_sale_off","ir_model_access","model_sale_off","base.group_user",1,1,1,1

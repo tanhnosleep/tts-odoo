@@ -6,6 +6,8 @@
             <menuitem id="test_model_show_time_action" action="show_time_action"/>
             <menuitem id="test_model_movie_category_action" action="movie_category_action"/>
             <menuitem id="test_model_movie_actor_action" action="movie_actor_action"/>
+            <menuitem id="test_model_foods_action" action="foods_action"/>
+            <menuitem id="test_model_sale_off_action" action="sale_off_action"/>
         </menuitem>
 
     </menuitem>

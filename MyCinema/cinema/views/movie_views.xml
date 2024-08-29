@@ -6,11 +6,11 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <record id="show_time_action" model="ir.actions.act_window">
-        <field name="name">Xuất chiếu</field>
-        <field name="res_model">show.time</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+<!--    <record id="show_time_action" model="ir.actions.act_window">-->
+<!--        <field name="name">Xuất chiếu</field>-->
+<!--        <field name="res_model">show.time</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
 
     <record id="movie_category_action" model="ir.actions.act_window">
         <field name="name">Thể loại</field>
@@ -33,24 +33,24 @@
                 <field name="name"/>
                 <field name="category_ids" widget="many2many_tags"/>
                 <field name="length"/>
-                <field name="show_time_ids"/>
+<!--                <field name="show_time_ids"/>-->
             </tree>
         </field>
     </record>
 
         <!--List cac show time voi cac thuoc tinh hien thi them o giao dien-->
-    <record id="show_time_view_tree" model="ir.ui.view">
-        <field name="name">movie.tree</field>
-        <field name="model">show.time</field>
-        <field name="arch" type="xml">
-            <tree string="Tests">
-                <field name="name"/>
-                <field name="begin_time"/>
-                <field name="end_time"/>
-                <field name="movie_id"/>
-            </tree>
-        </field>
-    </record>
+<!--    <record id="show_time_view_tree" model="ir.ui.view">-->
+<!--        <field name="name">movie.tree</field>-->
+<!--        <field name="model">show.time</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree string="Tests">-->
+<!--                <field name="name"/>-->
+<!--                <field name="begin_time"/>-->
+<!--                <field name="end_time"/>-->
+<!--                <field name="movie_id"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
 
     <!--Form edit va create 1 estate property-->
     <record id="movie_view_form" model="ir.ui.view">
@@ -69,23 +69,6 @@
                             <field name="content"/>
                         </group>
                     </group>
-                    <notebook>
-                        <page string="Thông tin xuất chiếu">
-                            <group>
-                                <field name="length"/>
-                                <field name="show_time_ids">
-                                    <tree>
-                                        <field name="name"/>
-                                        <field name="begin_time"/>
-                                        <field name="end_time"/>
-                                        <field name="seat_counts"/>
-                                        <field name="adult_ticket_price"/>
-                                        <field name="children_ticket_price"/>
-                                    </tree>
-                                </field>
-                            </group>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
         </field>

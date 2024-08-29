@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="foods_action" model="ir.actions.act_window">
+        <field name="name">Danh sách đồ ăn thức uống </field>
+        <field name="res_model">foods</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
