@@ -7,12 +7,12 @@ from odoo.tools.populate import compute
 import pytz
 
 class ShowTime(models.Model):
-    _name = "show.time"
+    _name = "cinema.show.time"
     _description = "This is table for show time"
 
-    name = fields.Text(default='Xuat Chieu')
+    name = fields.Text(default='Giờ Chiếu Phim')
     begin_time = fields.Datetime(string = 'Giờ bắt đầu',  default=datetime.today())
-    movie_ids = fields.Many2many('movie', string='Phim')
+    movie_ids = fields.Many2many('cinema.movie', string='Phim')
     thoi_luong = fields.Integer(related='movie_ids.length')
     end_time = fields.Datetime(compute='_compute_end_time', string = 'Giờ kết thúc')
 

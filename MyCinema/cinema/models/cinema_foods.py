@@ -2,7 +2,7 @@ from odoo import fields, models
 
 
 class Foods(models.Model):
-    _name = "foods"
+    _name = "cinema.foods"
     _description = "This is table for foods"
 
     name = fields.Char(required=True)

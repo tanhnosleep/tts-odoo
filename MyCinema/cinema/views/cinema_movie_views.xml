@@ -2,60 +2,40 @@
 <odoo>
     <record id="movie_action" model="ir.actions.act_window">
         <field name="name">Danh sách các bộ phim</field>
-        <field name="res_model">movie</field>
+        <field name="res_model">cinema.movie</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-<!--    <record id="show_time_action" model="ir.actions.act_window">-->
-<!--        <field name="name">Xuất chiếu</field>-->
-<!--        <field name="res_model">show.time</field>-->
-<!--        <field name="view_mode">tree,form</field>-->
-<!--    </record>-->
-
     <record id="movie_category_action" model="ir.actions.act_window">
         <field name="name">Thể loại</field>
-        <field name="res_model">movie.category</field>
+        <field name="res_model">cinema.movie.category</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <record id="movie_actor_action" model="ir.actions.act_window">
         <field name="name">Diễn viên</field>
-        <field name="res_model">movie.actor</field>
+        <field name="res_model">cinema.movie.actor</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <!--List cac movie voi cac thuoc tinh hien thi them o giao dien-->
     <record id="estate_property_view_tree" model="ir.ui.view">
         <field name="name">estate.tree</field>
-        <field name="model">movie</field>
+        <field name="model">cinema.movie</field>
         <field name="arch" type="xml">
             <tree string="Tests">
                 <field name="name"/>
                 <field name="category_ids" widget="many2many_tags"/>
                 <field name="length"/>
-<!--                <field name="show_time_ids"/>-->
+                <!--                <field name="show_time_ids"/>-->
             </tree>
         </field>
     </record>
 
-        <!--List cac show time voi cac thuoc tinh hien thi them o giao dien-->
-<!--    <record id="show_time_view_tree" model="ir.ui.view">-->
-<!--        <field name="name">movie.tree</field>-->
-<!--        <field name="model">show.time</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <tree string="Tests">-->
-<!--                <field name="name"/>-->
-<!--                <field name="begin_time"/>-->
-<!--                <field name="end_time"/>-->
-<!--                <field name="movie_id"/>-->
-<!--            </tree>-->
-<!--        </field>-->
-<!--    </record>-->
-
     <!--Form edit va create 1 estate property-->
     <record id="movie_view_form" model="ir.ui.view">
-        <field name="name">movie.form</field>
-        <field name="model">movie</field>
+        <field name="name">cinema.movie.form</field>
+        <field name="model">cinema.movie</field>
         <field name="arch" type="xml">
             <form string="Test">
                 <sheet>
@@ -64,9 +44,11 @@
                     </h1>
                     <field name="category_ids" widget="many2many_tags"/>
                     <group>
+
                         <group>
                             <field name="actor_ids"/>
                             <field name="content"/>
+                            <field name="length"/>
                         </group>
                     </group>
                 </sheet>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+    <record id="ticket_action" model="ir.actions.act_window">
+        <field name="name">Vé xem phim</field>
+        <field name="res_model">cinema.ticket</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!--List cac show time voi cac thuoc tinh hien thi them o giao dien-->
+    <record id="ticket_view_tree" model="ir.ui.view">
+        <field name="name">cinema.ticket.tree</field>
+        <field name="model">cinema.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="Tests">
+                <field name="movie_id"/>
+                <field name="thoi_luong"/>
+                <field name="phong"/>
+                <field name="gio_bat_dau"/>
+                <field name="seat_name"/>
+                <field name="seat_price"/>
+                <field name="total_price"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

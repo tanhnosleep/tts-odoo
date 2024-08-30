@@ -10,10 +10,14 @@
 
     'data': [
         'security/ir.model.access.csv',
-        'views/movie_views.xml',
-        'views/foods_views.xml',
-        'views/sale_off_views.xml',
-        'views/show_time_views.xml',
+        'views/cinema_movie_views.xml',
+        'views/cinema_foods_views.xml',
+        'views/cinema_sale_off_views.xml',
+        'views/cinema_show_time_views.xml',
+        'views/cinema_room_views.xml',
+        'views/cinema_seat_views.xml',
+        'views/cinema_xuat_chieu_views.xml',
+        'views/cinema_ticket_views.xml',
         'views/cinema_menus.xml',
 
     ],

@@ -2,7 +2,7 @@ from odoo import fields, models
 
 
 class SaleOff(models.Model):
-    _name = "sale.off"
+    _name = "cinema.sale.off"
     _description = "This is table for sale off"
 
     name = fields.Char(required=True, string= 'Tên khuyến mãi')

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="room_action" model="ir.actions.act_window">
+        <field name="name">Danh sách phòng</field>
+        <field name="res_model">cinema.room</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="room_view_tree" model="ir.ui.view">
+        <field name="name">cinema.room.tree</field>
+        <field name="model">cinema.room</field>
+        <field name="arch" type="xml">
+            <tree string="Tests">
+                <field name="name"/>
+                <field name="seat_counts"/>
+                <field name="seat_ids">
+                    <tree>
+                        <field name="seat_name"/>
+                        <field name="status"/>
+                        <field name="seat_type"/>
+                        <field name="seat_price"/>
+                    </tree>
+                </field>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
