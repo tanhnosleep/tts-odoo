@@ -14,7 +14,6 @@
             <tree string="Tests">
                 <field name="room_id"/>
                 <field name="seat_name"/>
-                <field name="status"/>
                 <field name="seat_type"/>
                 <field name="seat_price"/>
             </tree>

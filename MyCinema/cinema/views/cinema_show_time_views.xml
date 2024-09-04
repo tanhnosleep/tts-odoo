@@ -8,4 +8,18 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <!--List cac movie voi cac thuoc tinh hien thi them o giao dien-->
+    <record id="cinema_show_time_view_tree" model="ir.ui.view">
+        <field name="name">cinema.show.time.tree</field>
+        <field name="model">cinema.show.time</field>
+        <field name="arch" type="xml">
+            <tree string="Tests">
+                <field name="name"/>
+                <field name="begin_time"/>
+                <field name="end_time"/>
+                <field name="thoi_luong"/>
+            </tree>
+        </field>
+    </record>
+
 </odoo>

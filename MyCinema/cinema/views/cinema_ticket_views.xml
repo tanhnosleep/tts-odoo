@@ -15,12 +15,10 @@
         <field name="model">cinema.ticket</field>
         <field name="arch" type="xml">
             <tree string="Tests">
-                <field name="movie_name"/>
+                <field name="name"/>
 <!--                <field name="thoi_luong"/>-->
-                <field name="phong"/>
+                <field name="sold_status" />
                 <field name="gio_bat_dau"/>
-                <field name="seat_name"/>
-                <field name="seat_price"/>
                 <field name="total_price"/>
             </tree>
         </field>

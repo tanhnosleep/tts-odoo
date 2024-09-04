@@ -6,10 +6,6 @@ class Foods(models.Model):
     _description = "This is table for seat"
 
     seat_name = fields.Char()
-    status = fields.Selection(
-        string='Status',
-        selection=[('On', 'On'), ('Off', 'Off')],
-        required=True, default='Off')
     seat_type = fields.Selection(
         string='Seat Type',
         selection=[('Ordinary', 'Ordinary'), ('Vip', 'Vip'), ('Couple', 'Couple')],
