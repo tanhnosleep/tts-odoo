@@ -10,7 +10,6 @@
             <menuitem id="test_model_sale_off_action" action="sale_off_action"/>
             <menuitem id="test_model_room_action" action="room_action"/>
             <menuitem id="test_model_seat_action" action="seat_action"/>
-            <menuitem id="test_model_xuat_chieu_action" action="xuat_chieu_action"/>
             <menuitem id="test_model_ticket_action" action="ticket_action"/>
         </menuitem>
 

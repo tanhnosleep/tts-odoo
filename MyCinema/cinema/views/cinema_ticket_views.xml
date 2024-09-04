@@ -15,8 +15,8 @@
         <field name="model">cinema.ticket</field>
         <field name="arch" type="xml">
             <tree string="Tests">
-                <field name="movie_id"/>
-                <field name="thoi_luong"/>
+                <field name="movie_name"/>
+<!--                <field name="thoi_luong"/>-->
                 <field name="phong"/>
                 <field name="gio_bat_dau"/>
                 <field name="seat_name"/>
@@ -25,5 +25,31 @@
             </tree>
         </field>
     </record>
+
+<!--Form edit va create 1 ticket-->
+<!--    <record id="ticked_view_form" model="ir.ui.view">-->
+<!--        <field name="name">cinema.ticket.form</field>-->
+<!--        <field name="model">cinema.ticket</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Test">-->
+<!--                <sheet>-->
+<!--                    <h1 class="mb32">-->
+<!--                        <field name="movie_id" class="mb16"/>-->
+<!--                    </h1>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="thoi_luong"/>-->
+<!--                            <field name="gio_bat_dau"/>-->
+<!--                            <field name="phong"/>-->
+<!--                            <field name="seat_name"/>-->
+<!--                            <field name="seat_price"/>-->
+<!--                            <field name="total_price"/>-->
+
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
 
 </odoo>

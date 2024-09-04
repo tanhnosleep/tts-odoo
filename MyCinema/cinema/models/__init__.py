@@ -6,5 +6,4 @@ from . import  cinema_foods
 from . import  cinema_sale_off
 from . import  cinema_show_time
 from . import  cinema_seat
-from . import cinema_xuat_chieu
 from . import cinema_ticket

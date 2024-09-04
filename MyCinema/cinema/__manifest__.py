@@ -16,7 +16,6 @@
         'views/cinema_show_time_views.xml',
         'views/cinema_room_views.xml',
         'views/cinema_seat_views.xml',
-        'views/cinema_xuat_chieu_views.xml',
         'views/cinema_ticket_views.xml',
         'views/cinema_menus.xml',
 
