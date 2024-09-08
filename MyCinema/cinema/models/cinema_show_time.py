@@ -16,6 +16,8 @@ class ShowTime(models.Model):
     end_time = fields.Datetime(compute='_compute_end_time', string = 'Giờ kết thúc', store=True)
     room_id = fields.Many2one('cinema.room', string='Phòng')
     room_name = fields.Char(related='room_id.name')
+    product_id = fields.Many2one('product.template', string='San pham')
+    sale_order_ids = fields.One2many('sale.order.line', 'show_time_id')
 
     @api.depends("begin_time", "thoi_luong")
     def _compute_end_time(self):

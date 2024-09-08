@@ -8,3 +8,5 @@
 "access_room","ir_model_access","model_cinema_room","base.group_user",1,1,1,1
 "access_seat","ir_model_access","model_cinema_seat","base.group_user",1,1,1,1
 "access_ticket","ir_model_access","model_cinema_ticket","base.group_user",1,1,1,1
+"access_sale_order","ir_model_access","model_sale_order_line","base.group_user",1,1,1,1
+"access_product","ir_model_access","model_product_template","base.group_user",1,1,1,1

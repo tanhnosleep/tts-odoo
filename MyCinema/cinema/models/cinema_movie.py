@@ -12,3 +12,4 @@ class Movie(models.Model):
     show_time_ids = fields.One2many('cinema.show.time','movie_id', string='xuat chieu')
     category_ids = fields.Many2many('cinema.movie.category', string='Thể loại')
     actor_ids = fields.Many2many('cinema.movie.actor', string='Diễn viên chính')
+    sale_order_ids = fields.One2many('sale.order.line', 'movie_id')

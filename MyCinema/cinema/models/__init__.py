@@ -7,3 +7,5 @@ from . import  cinema_sale_off
 from . import  cinema_show_time
 from . import  cinema_seat
 from . import cinema_ticket
+from . import cinema_sale_order
+from . import cinema_product

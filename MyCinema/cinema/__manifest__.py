@@ -1,7 +1,7 @@
 {
     'name': "Cinema",
     'version': '1.0',
-    'depends': ['base'],
+    'depends': ['base', 'product', 'sale'],
     'author': "Author Name",
     'category': 'CRM/Cinema',
     'description': """
@@ -17,7 +17,9 @@
         'views/cinema_room_views.xml',
         'views/cinema_seat_views.xml',
         'views/cinema_ticket_views.xml',
+        'views/cinema_sale_order_views.xml',
         'views/cinema_menus.xml',
+        'views/cinema_product_views.xml',
 
     ],
 }
