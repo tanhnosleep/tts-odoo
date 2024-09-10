@@ -7,7 +7,7 @@ from odoo.tools.populate import compute
 class PropertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "This is demo for estate_property_offer"
-
+    _order = "price desc"
     price = fields.Float()
     status = fields.Selection(
         string='Status',

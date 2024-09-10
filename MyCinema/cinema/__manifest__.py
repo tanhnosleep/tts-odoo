@@ -19,7 +19,6 @@
         'views/cinema_ticket_views.xml',
         'views/cinema_sale_order_views.xml',
         'views/cinema_menus.xml',
-        'views/cinema_product_views.xml',
 
     ],
 }

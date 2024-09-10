@@ -10,7 +10,7 @@ from odoo.tools.populate import compute
 class RecurringPlan(models.Model):
     _name = "estate.property"
     _description = "This is demo for estate_property"
-
+    _order = "id desc"
     name = fields.Char(required=True)
     description = fields.Text()
     postcode = fields.Char()

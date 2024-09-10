@@ -23,4 +23,3 @@ class Foods(models.Model):
                 record.seat_price = 130000
 
     room_id = fields.Many2one('cinema.room', string='Phòng')
-    sale_order_ids = fields.One2many('sale.order.line', 'seat_id')

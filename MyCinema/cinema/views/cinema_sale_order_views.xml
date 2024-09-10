@@ -8,8 +8,8 @@
             <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
                 <field name="movie_id"/>
                 <field name="show_time_id"/>
-                <field name="seat_id"/>
-                <field name="ticket_id"/>
+                <field name="seat_ids" widget="many2many_tags"/>
+                <field name="ticket_ids" widget="many2many_tags"/>
                 <field name="phong"/>
 
             </xpath>

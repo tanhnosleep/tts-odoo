@@ -22,7 +22,6 @@ class Ticket(models.Model):
 
     seat_price = fields.Float(related = 'seat_id.seat_price')
     total_price = fields.Float(compute='_compute_total_price', string='Thành tiền')
-    sale_order_ids = fields.One2many('sale.order.line', 'ticket_id')
 
     @api.depends("seat_price")
     def _compute_total_price(self):

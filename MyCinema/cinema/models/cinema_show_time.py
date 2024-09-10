@@ -16,7 +16,7 @@ class ShowTime(models.Model):
     end_time = fields.Datetime(compute='_compute_end_time', string = 'Giờ kết thúc', store=True)
     room_id = fields.Many2one('cinema.room', string='Phòng')
     room_name = fields.Char(related='room_id.name')
-    product_id = fields.Many2one('product.template', string='San pham')
+    product_id = fields.Many2one('product.product', string='San pham')
     sale_order_ids = fields.One2many('sale.order.line', 'show_time_id')
 
     @api.depends("begin_time", "thoi_luong")
@@ -57,3 +57,20 @@ class ShowTime(models.Model):
                 record.name = record.movie_name +" "+ record.room_name
             else:
                 record.name = 'show time'
+
+    @api.model
+    def create(self, vals):
+        # Create the showtime first
+        showtime = super(ShowTime, self).create(vals)
+
+        # Automatically create tickets for all seats in the room
+        if showtime.room_id:
+            # Fetch all seats in the selected room
+            seats = self.env['cinema.seat'].search([('room_id', '=', showtime.room_id.id)])
+            for seat in seats:
+                self.env['cinema.ticket'].create({
+                    'show_time_id': showtime.id,
+                    'seat_id': seat.id,
+                    'seat_price': seat.seat_price,  # Use the seat's price
+                })
+        return showtime

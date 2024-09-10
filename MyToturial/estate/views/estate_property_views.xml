@@ -44,6 +44,7 @@
                 <header>
                     <button name="action_sold" type="object" string="Sold"/>
                     <button name="action_cancel" type="object" string="Cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="New, Offer Received, Sold, Canceled"/>
                 </header>
                 <sheet>
                     <h1 class="mb32">
@@ -52,8 +53,7 @@
                     <field name="tag_ids" widget="many2many_tags"/>
                     <group>
                         <group>
-                            <field name="state"/>
-                            <field name="property_type_id"/>
+                            <field name="property_type_id" options="{'no_create': true, 'no_open': true}"/>
                             <field name="postcode"/>
                             <field name="date_availability"/>
                         </group>
@@ -84,8 +84,8 @@
                                     <field name="partner_id"/>
                                     <field name="validity"/>
                                     <field name="date_deadline"/>
-                                    <button name="action_accepted" type="object" icon="fa-check"/>
-                                    <button name="action_refused" type="object" icon="fa-times"/>
+                                    <button name="action_accepted" type="object" icon="fa-check" title="Accept Offer"/>
+                                    <button name="action_refused" type="object" icon="fa-times" title="Refuse Offer"/>
                                     <field name="status"/>
                                 </tree>
                             </field>
@@ -124,6 +124,26 @@
                     <filter string="Nhom theo so post" name="postcode" context="{'group_by':'postcode'}"/>
                 </group>
             </search>
+        </field>
+    </record>
+
+    <!--Form edit va create 1 estate property type-->
+    <record id="estate_property_type_view_form" model="ir.ui.view">
+        <field name="name">estate.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <sheet>
+                    <field name="sequence" widget="handle"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="estate_ids"/>
+                            <tree>
+                                <field name="name"/>
+                            </tree>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 </odoo>
