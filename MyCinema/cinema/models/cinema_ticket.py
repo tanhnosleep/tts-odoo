@@ -18,10 +18,11 @@ class Ticket(models.Model):
     seat_id = fields.Many2one('cinema.seat', string='Ghế', domain="[('room_id', '=', phong)]")
     gio_bat_dau = fields.Datetime(related = 'show_time_id.begin_time')
     # thoi_luong = fields.Integer(related = 'movie_id.length')
-    seat_name = fields.Char(related = 'seat_id.seat_name')
+    seat_name = fields.Char(related = 'seat_id.name')
 
     seat_price = fields.Float(related = 'seat_id.seat_price')
     total_price = fields.Float(compute='_compute_total_price', string='Thành tiền')
+    sale_order_id = fields.Many2one('sale.order.line')
 
     @api.depends("seat_price")
     def _compute_total_price(self):
@@ -36,9 +37,13 @@ class Ticket(models.Model):
             else:
                 record.name = 'ticket'
 
-    @api.depends("customer_id")
+    @api.depends("customer_id", "sale_order_id.state")
     def _compute_sold_status(self):
         for record in self:
+            if record.sale_order_id.state == 'cancel':
+                record.customer_id = ''
+            else:
+                record.customer_id = record.sale_order_id.order_partner_id
             if record.customer_id:
                 record.sold_status = 'Sold'
             else:
@@ -56,4 +61,4 @@ class Ticket(models.Model):
                 ])
                 if existing_ticket:
                     raise ValidationError(
-                        f"Ghế {record.seat_name} trong {record.phong} đã được chọn cho xuất chiếu này. Vui lòng chọn ghế khác..")
+                        f"Ghế {record.name} trong {record.phong} đã được chọn cho xuất chiếu này. Vui lòng chọn ghế khác..")

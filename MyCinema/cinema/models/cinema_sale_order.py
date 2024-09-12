@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
     seat_type = fields.Selection(
         string='Seat Type',
         selection=[('Ordinary', 'Ordinary'), ('Vip', 'Vip'), ('Couple', 'Couple')])
-    ticket_ids = fields.Many2many('cinema.ticket', compute='_compute_ticket', store = True)
+    ticket_ids = fields.One2many('cinema.ticket', 'sale_order_id', compute='_compute_ticket', store=True)
 
     product_id = fields.Many2one(related='show_time_id.product_id', store = True)
     product_uom_qty = fields.Float(default = 0.0, compute='_compute_qty')
@@ -27,18 +27,6 @@ class SaleOrder(models.Model):
         for record in self:
             record.product_uom_qty = len(record.ticket_ids)
 
-    @api.constrains('seat_ids')
-    def _check_seat_type(self):
-        for record in self:
-            if record.seat_ids:
-                # Lấy loại ghế của ghế đầu tiên
-                first_seat_type = record.seat_ids[0].seat_type
-                # Kiểm tra tất cả các ghế còn lại
-                for seat in record.seat_ids:
-                    if seat.seat_type != first_seat_type:
-                        raise ValidationError(
-                            "Tất cả các ghế được chọn phải có cùng loại ghế."
-                        )
 
     @api.depends('seat_ids', 'show_time_id')
     def _compute_ticket(self):
@@ -47,15 +35,10 @@ class SaleOrder(models.Model):
                 # Tìm các vé tương ứng với showtime và các ghế đã chọn
                 tickets = self.env['cinema.ticket'].search([
                     ('show_time_id', '=', record.show_time_id.id),
-                    ('seat_id', 'in', record.seat_ids.ids)
+                    ('seat_id', 'in', record.seat_ids.ids),
+                    ('sold_status', '=', 'On Sale')
                 ])
                 record.ticket_ids = tickets
-                # Kiểm tra trạng thái "Sold"
-                for ticket in record.ticket_ids:
-                    if ticket.sold_status == 'Sold':
-                        raise ValidationError(
-                            "Vé đã được bán, vui lòng chọn vé khác."
-                        )
 
                 # Gán khách hàng vào vé
                 for ticket in record.ticket_ids:

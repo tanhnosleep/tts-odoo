@@ -16,7 +16,7 @@
                 <field name="seat_counts"/>
                 <field name="seat_ids">
                     <tree>
-                        <field name="seat_name"/>
+                        <field name="name"/>
                         <field name="seat_type"/>
                         <field name="seat_price"/>
                     </tree>

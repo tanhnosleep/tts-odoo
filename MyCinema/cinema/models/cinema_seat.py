@@ -5,7 +5,7 @@ class Foods(models.Model):
     _name = "cinema.seat"
     _description = "This is table for seat"
 
-    seat_name = fields.Char()
+    name = fields.Char()
     seat_type = fields.Selection(
         string='Seat Type',
         selection=[('Ordinary', 'Ordinary'), ('Vip', 'Vip'), ('Couple', 'Couple')],
