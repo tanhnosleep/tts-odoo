@@ -9,8 +9,8 @@ class Ticket(models.Model):
     _name = "cinema.ticket"
     _description = "This is table for ticket"
 
-    name = fields.Char(compute='_compute_name')
-    sold_status = fields.Char(compute='_compute_sold_status', string='Trạng thái vé')
+    name = fields.Char(compute='_compute_name', store=True)
+    sold_status = fields.Char(compute='_compute_sold_status', string='Trạng thái vé',store=True)
     customer_id = fields.Many2one('res.partner', string = 'Khách hàng')
     show_time_id = fields.Many2one('cinema.show.time', string='Xuất chiếu')
     show_time_name = fields.Text(related='show_time_id.name')

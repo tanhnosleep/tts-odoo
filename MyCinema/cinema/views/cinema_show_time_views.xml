@@ -8,7 +8,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!--List cac movie voi cac thuoc tinh hien thi them o giao dien-->
+    <!--List cac showtime voi cac thuoc tinh hien thi them o giao dien-->
     <record id="cinema_show_time_view_tree" model="ir.ui.view">
         <field name="name">cinema.show.time.tree</field>
         <field name="model">cinema.show.time</field>
@@ -19,6 +19,40 @@
                 <field name="end_time"/>
                 <field name="thoi_luong"/>
             </tree>
+        </field>
+    </record>
+
+    <!--Form edit va create 1 show time-->
+    <record id="show_time_view_form" model="ir.ui.view">
+        <field name="name">cinema.show.time.form</field>
+        <field name="model">cinema.show.time</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <sheet>
+                    <h1 class="mb32">
+                        <field name="name" class="mb16"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="movie_id"/>
+                            <field name="room_id"/>
+                            <field name="begin_time"/>
+                            <field name="end_time"/>
+                        </group>
+                        <group>
+                            <field name="product_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Danh sách vé">
+                            <group>
+                                <field name="ticket_ids"/>
+
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
         </field>
     </record>
 
