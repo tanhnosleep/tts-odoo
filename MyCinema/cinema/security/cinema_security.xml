@@ -1,0 +1,33 @@
+<odoo>
+    <data noupdate="0">
+        <record id="module_category_cinema" model="ir.module.category">
+            <field name="name">Cinema</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="group_cinema_nv" model="res.groups">
+            <field name="name">cinema_nv</field>
+            <field name="category_id" ref="module_category_cinema"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_cinema_admin" model="res.groups">
+            <field name="name">cinema_admin</field>
+            <field name="category_id" ref="module_category_cinema"/>
+            <field name="implied_ids" eval="[(4, ref('group_cinema_nv'))]"/>
+        </record>
+
+        <record id="group_sale_nv" model="res.groups">
+            <field name="name">sale_nv</field>
+            <field name="category_id" ref="module_category_cinema"/>
+            <field name="implied_ids" eval="[(4, ref('group_cinema_nv'))]"/>
+        </record>
+
+        <record id="group_sale_admin" model="res.groups">
+            <field name="name">sale_admin</field>
+            <field name="category_id" ref="module_category_cinema"/>
+            <field name="implied_ids" eval="[(4, ref('group_cinema_nv'))]"/>
+        </record>
+        
+    </data>
+</odoo>
