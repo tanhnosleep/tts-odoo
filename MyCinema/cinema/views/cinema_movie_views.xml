@@ -43,9 +43,12 @@
                         <field name="name" class="mb16"/>
                     </h1>
                     <field name="category_ids" widget="many2many_tags"/>
+                    <field name="poster" widget="image" class="oe_avatar" options="{'preview_image':'poster'}"/>
+
                     <group>
 
                         <group>
+                            <field name="trailer"/>
                             <field name="actor_ids"/>
                             <field name="content"/>
                             <field name="length"/>

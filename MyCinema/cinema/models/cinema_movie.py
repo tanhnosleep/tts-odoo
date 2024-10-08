@@ -13,3 +13,6 @@ class Movie(models.Model):
     category_ids = fields.Many2many('cinema.movie.category', string='Thể loại')
     actor_ids = fields.Many2many('cinema.movie.actor', string='Diễn viên chính')
     sale_order_ids = fields.One2many('sale.order.line', 'movie_id')
+
+    poster = fields.Binary(string='Poster', attachment=True)
+    trailer = fields.Text(string= 'Trailer')

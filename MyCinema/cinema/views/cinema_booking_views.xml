@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="cinema_booking" name="cinema_booking">
+        <t t-call="website.layout">
+            <div class="container" style="margin-bottom: 50px;">
+                <div class="container"
+                     style="border: 1px solid lightgray; border-radius: 10px; padding: 10px; margin-bottom: 50px;">
+                    <div class="row">
+                        <!-- Cột cho poster -->
+                        <div class="col-md-4">
+                            <img t-attf-src="/web/image/cinema.movie/#{movie.id}/poster" class="card-img-top"
+                                 alt="Poster"/>
+                        </div>
+                        <!-- Cột cho thông tin phim -->
+                        <div class="col-md-8">
+                            <h1 style="color: #72BE43;">
+                                <t t-esc="movie.name"/>
+                            </h1>
+
+                            <div class="d-flex">
+                                <p style="font-weight: bold;">Thể loại</p>
+                                <ul>
+                                    <t t-foreach="movie.category_ids" t-as="category">
+                                        <li style="display: inline;">
+                                            <span class="badge" style="background-color: #72be43  !important">
+                                                <t t-esc="category.name"/>
+                                            </span>
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+
+                            <p style="font-weight: bold;">Diễn viên chính</p>
+                            <ul>
+                                <t t-foreach="movie.actor_ids" t-as="actor">
+                                    <li style="display: inline;">
+                                        <div class="btn mx-1 my-1" style="background-color: #72be43  !important">
+                                            <t t-esc="actor.name"/>
+                                        </div>
+                                    </li>
+                                </t>
+                            </ul>
+                            <div>
+                                <p style="font-weight: bold; display: inline;">Thời lượng:</p>
+                                <t t-esc="movie.length"/>
+                                <p style="display: inline;">phút</p>
+                            </div>
+
+                            <div>
+                                <p style="font-weight: bold; display: inline;">Nội dung:</p>
+                                <t t-esc="movie.content"/>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="text-center" style="margin-bottom: 75px;">
+                            <img src="/cinema/static/images/seatMapHeader.png" style="width: 80%; height: auto;"/>
+                        </div>
+                        <div class="row"
+                             style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px;">
+                            <t t-foreach="showtime_data.ticket_ids" t-as="ticket">
+                                <button class="seat-box"
+                                        t-attf-style="background-color: #{'blue' if ticket.sold_status == 'Sold' else 'grey' if ticket.seat_id.seat_type == 'Ordinary' else 'yellow' if ticket.seat_id.seat_type == 'Vip' else 'pink'};"
+                                        style="display: flex; justify-content: center; align-items: center; aspect-ratio: 1/1; width: 100%; font-size: calc(0.5vw + 8px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                        t-att-data-seat-name="ticket.seat_id.name"
+                                        t-att-data-seat-price="ticket.seat_id.seat_price"
+                                        t-att-data-seat-type="ticket.seat_id.seat_type"
+                                        t-att-disabled="ticket.sold_status == 'Sold' and 'disabled' or None"
+                                        onclick="selectSeat(this)">
+                                    <t t-esc="ticket.seat_id.name"/>
+                                </button>
+                            </t>
+                        </div>
+
+                        <div class="d-flex justify-content-between" style="margin-top: 75px;">
+                            <button class="seat-box text-center p-2 border" style="background-color: grey  !important"/>
+                            <p>Ghế thường</p>
+                            <button class="seat-box text-center p-2 border"
+                                    style="background-color: yellow  !important"/>
+                            <p>Ghế vip</p>
+                            <button class="seat-box text-center p-2 border" style="background-color: pink  !important"/>
+                            <p>Ghế couple</p>
+                            <button class="seat-box text-center p-2 border" style="background-color: blue  !important"/>
+                            <p>Ghế đã bán</p>
+                            <button class="seat-box text-center p-2 border"
+                                    style="background-color: green  !important"/>
+                            <p>Ghế đã chọn</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="margin-top: 120px;">
+                        <div class="text-center"
+                             style="border: 1px solid lightgray; border-radius: 10px; padding: 10px;">
+                            <p style="font-weight: bold;">BHD Star Cinema</p>
+                            <p>
+                                <t t-esc="showtime_data.room_id.name" style="display: inline-block"/>
+                                -
+                                <t t-esc="showtime_data.begin_time" t-options="{'widget': 'datetime'}"/>
+                            </p>
+                            <hr class="default" style="margin-left:-11px; margin-right:-11px;"/>
+                            <p style="font-weight: bold; color: #72be43; font-size:200%">
+                                <t t-esc="movie.name"/>
+                            </p>
+                            <span id="selectedSeats"/>
+                            <hr class="default" style="margin-left:-11px; margin-right:-11px;"/>
+                            <!-- Phần hiển thị tổng tiền và nút mua -->
+                            <div id="totalPriceSection" style="display: none;">
+                                <p>Tổng tiền
+                                    <span id="totalPrice">VND</span>
+                                </p>
+                                <div class="d-grid gap-2">
+                                        <a href="#" class="btn"
+                                           style="background-color: #72be43  !important; color: white; font-weight: bold;">ĐẶT GHẾ
+                                        </a>
+                                    </div>
+                            </div>
+                            <!-- Phần thông báo nếu không chọn ghế -->
+                            <p id="noSeatMessage" style="color: red; display: block;">Bạn chưa chọn ghế nào. Vui lòng
+                                chọn ghế.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Import file JavaScript -->
+            <script type="text/javascript" src="/cinema/static/src/js/seat_selection.js"/>
+        </t>
+    </template>
+</odoo>

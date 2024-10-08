@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="navbar" inherit_id="web.frontend_layout">
+        <xpath expr="//div[@id='wrapwrap']/header" position="replace">
+
+            <div class="container" style="margin-bottom: 100px;">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" style="background-color: #f8f9fa;">
+                    <div class="container-fluid d-flex justify-content-between align-items-center">
+                        <a href="/cinema">
+                            <img src="/cinema/static/images/logocinema.png" style="height: 50px;" alt="Logo"/>
+                        </a>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/cinema">Lịch chiếu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Hệ thống rạp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Cửa hàng</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Khuyến mãi/Sự kiện</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        Khác
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">Về chúng tôi</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Dịch vụ quảng cáo</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Tuyển dụng</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                            <ul class="navbar-nav ms-auto">
+                                <!-- Kiểm tra nếu người dùng đã đăng nhập -->
+                            <t t-if="request.env.user and request.env.user != request.env['res.users'].browse(1)">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <!-- Hiển thị icon người dùng và tên đăng nhập -->
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <t t-esc="request.env.user.name"/>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <!-- Nút Đăng xuất -->
+                                            <a class="dropdown-item" href="/web/session/logout">Đăng xuất</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </t>
+                                <t t-if="request.env.user.id == 1">
+                                <li class="nav-item">
+                                    <a class="btn"
+                                       style="background-color: #72be43  !important; color: white !important;"
+                                       href="/web/login">Đăng nhập/Đăng ký
+                                    </a>
+                                </li>
+                                </t>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </xpath>
+    </template>
+    <template id="someTemplate" name="Some Template">
+        <t t-call="website.layout">
+
+            <div id="top-banner" class="text-center">
+                <img src="https://bhdstar.vn/wp-content/uploads/2024/09/bannerTop.jpg"/>
+            </div>
+
+            <div class="container">
+                <hr class="default"></hr>
+                <div class="text-center" margin="auto">
+                    <button type="button" class="btn btn-outline-success" disabled="true" style="font-weight: bold;">NOW
+                        SHOWING
+                    </button>
+
+                </div>
+                <br/>
+
+                <div class="row">
+                    <t t-foreach="model" t-as="movie">
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card shadow-sm h-100">
+                                <img t-attf-src="/web/image/cinema.movie/#{movie.id}/poster" class="card-img-top"
+                                     alt="Poster" style="height: 500px; object-fit: cover; width: 100%;"/>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        <t t-out="movie.name"/>
+                                    </h5>
+                                    <div class="d-grid gap-2">
+                                        <a t-att-href="'/cinema/movie/' + str(movie.id)" class="btn"
+                                           style="background-color: #72be43  !important">Xem chi
+                                            tiết
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+
+            </div>
+        </t>
+    </template>
+</odoo>

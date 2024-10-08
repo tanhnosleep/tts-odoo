@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="movie_detail_template" name="movie_detail_template">
+        <t t-call="website.layout">
+            <style>
+                .button1 {
+                background-color: #454D6A;
+                color: white;
+                border: 2px solid #e7e7e7;
+                padding: 15px 15px 15px 15px;
+                }
+
+                .button1:hover {background-color: #72BE43; color: white;}
+
+                .hv:hover {color: #72BE43;}
+
+            </style>
+            <div class="container" style="border: 1px solid lightgray; border-radius: 10px; padding: 10px;">
+                <div class="row">
+                    <!-- Cột cho poster -->
+                    <div class="col-md-4">
+                        <img t-attf-src="/web/image/cinema.movie/#{movie.id}/poster" class="card-img-top"
+                             alt="Poster"/>
+                    </div>
+                    <!-- Cột cho thông tin phim -->
+                    <div class="col-md-8">
+                        <h1 style="color: #72BE43;">
+                            <t t-esc="movie.name"/>
+                        </h1>
+
+                        <div class="d-flex">
+                            <p style="font-weight: bold;">Thể loại</p>
+                            <ul>
+                                <t t-foreach="movie.category_ids" t-as="category">
+                                    <li style="display: inline;">
+                                        <span class="badge" style="background-color: #72be43  !important">
+                                            <t t-esc="category.name"/>
+                                        </span>
+                                    </li>
+                                </t>
+                            </ul>
+                        </div>
+
+                        <p style="font-weight: bold;">Diễn viên chính</p>
+                        <ul>
+                            <t t-foreach="movie.actor_ids" t-as="actor">
+                                <li style="display: inline;">
+                                    <div class="btn mx-1 my-1" style="background-color: #72be43  !important">
+                                        <t t-esc="actor.name"/>
+                                    </div>
+                                </li>
+                            </t>
+                        </ul>
+                        <div>
+                            <p style="font-weight: bold; display: inline;">Thời lượng:</p>
+                            <t t-esc="movie.length"/>
+                            <p style="display: inline;">phút</p>
+                        </div>
+
+                        <div>
+                            <p style="font-weight: bold; display: inline;">Nội dung:</p>
+                            <t t-esc="movie.content"/>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="margin-top: 50px;">
+                <iframe width="100%" height="700px"
+                        t-att-src="movie.trailer"
+                        title="YouTube video player">
+                </iframe>
+            </div>
+            <div class="container">
+                <hr class="default"></hr>
+                <h2 style="color: #72BE43;">Xuất chiếu</h2>
+
+                <ul style="border: 1px solid lightgray; border-radius: 10px; padding: 10px;">
+                    <t t-if="showtimes">
+                        <t t-foreach="showtimes.mapped('room_id')" t-as="room">
+                            <div>
+                                <div>
+                                    <img src="/cinema/static/images/bhdIcon.png" style="display: inline-block"/>
+                                    <p style="display: inline-block" class="hv">BHD Star Cinema
+                                    <t t-esc="room.name" style="display: inline-block"/>
+                                    </p>
+                                </div>
+                                <t t-foreach="showtimes.filtered(lambda s: s.room_id == room)" t-as="showtime">
+                                    <div style="display: inline;">
+                                        <a role="button"
+                                           t-att-href="'/cinema/movie/' + str(movie.id) + '/booking/' + str(showtime.id)"
+                                           class="btn button button1 my-4 mx-1">
+                                            <t t-esc="showtime.begin_time" t-options="{'widget': 'datetime'}"/>
+                                        </a>
+                                    </div>
+                                </t>
+                            </div>
+                        </t>
+                    </t>
+                    <t t-else="">
+                        <!-- Hiển thị thông báo nếu không có suất chiếu -->
+                        <p>Hiện tại không có xuất chiếu nào cho bộ phim này, vui lòng chọn phim khác.</p>
+                    </t>
+                </ul>
+            </div>
+
+        </t>
+    </template>
+</odoo>
