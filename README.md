@@ -8,7 +8,7 @@
   2.1. Giao diện phía rạp chiếu phim
     - Giao diện đăng nhập website
       
-      ![FireShot Capture 018 - Login - My Website -  localhost](https://github.com/user-attachments/assets/1bf09c98-b429-4e33-a8e9-0054ed720a9c)
+      ![image](https://github.com/user-attachments/assets/1bf09c98-b429-4e33-a8e9-0054ed720a9c)
     - Trang chủ website
       
       ![FireShot Capture 001 - Some Template - My Website -  localhost](https://github.com/user-attachments/assets/7772e10b-c639-4128-a12c-e3a6c0e4de76)
