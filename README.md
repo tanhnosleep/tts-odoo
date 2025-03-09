@@ -8,19 +8,24 @@
   2.1. Giao diện phía rạp chiếu phim
     - Giao diện đăng nhập website
       
-      ![image](https://github.com/user-attachments/assets/1bf09c98-b429-4e33-a8e9-0054ed720a9c)
+      ![FireShot Capture 018 - Login - My Website -  localhost](https://github.com/user-attachments/assets/5d7db4d5-c1ee-45fb-aa20-b7ad3f3b8055)
+
     - Trang chủ website
       
-      ![FireShot Capture 001 - Some Template - My Website -  localhost](https://github.com/user-attachments/assets/7772e10b-c639-4128-a12c-e3a6c0e4de76)
+      ![FireShot Capture 001 - Some Template - My Website -  localhost](https://github.com/user-attachments/assets/a245d023-3d78-44a6-add6-aeee8c244002)
+
     - Xem chi tiết một bộ phim, nếu không có xuất chiếu bộ phim đó sẽ hiện thông báo
       
-      ![FireShot Capture 002 - movie_detail_template - My Website -  localhost](https://github.com/user-attachments/assets/1113b940-ab79-426f-8fa9-d16da43e5f21)
+      ![FireShot Capture 002 - movie_detail_template - My Website -  localhost](https://github.com/user-attachments/assets/6bbe44ae-42c5-4a8d-a6ed-d3c2349a8fe7)
+
     - Nếu có xuất chiếu khách hàng có thể chọn xuất chiếu và đặt mua vé
       
-      ![FireShot Capture 003 - movie_detail_template - My Website -  localhost](https://github.com/user-attachments/assets/7757eaec-5deb-4c45-b1c6-ca36aabc89cc)
+      ![FireShot Capture 003 - movie_detail_template - My Website -  localhost](https://github.com/user-attachments/assets/14d734c4-d2b0-49f5-ac8f-87b83c600109)
+
     - Giao diện đặt mua vé, nếu có vé đã được đặt, khách hàng sẽ không thể đặt mua vé đó nữa
       
-      ![FireShot Capture 006 - cinema_booking - My Website -  localhost](https://github.com/user-attachments/assets/329502b6-c99d-4d9f-bce5-37a0631d8877)
+      ![FireShot Capture 006 - cinema_booking - My Website -  localhost](https://github.com/user-attachments/assets/e5747cf9-548c-4dac-a68d-ea0b7bef41bf)
+
   2.2. Giao diện quản lý phía Odoo
     
     - Quản lý các bộ phim
